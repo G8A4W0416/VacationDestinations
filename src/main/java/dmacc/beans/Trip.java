@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Trip {
 	@Id
@@ -14,7 +16,9 @@ public class Trip {
 	private long id;
 	private String destination;
 	private int tripCost;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate tripStart;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate tripEnd;
 	
 	public Trip() {

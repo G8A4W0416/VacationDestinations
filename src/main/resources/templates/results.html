@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>View All Destinations</title>
+</head>
+<body>
+<form>
+<table>
+<tr th:each="currentDestination : ${destinations}">
+	<td th:text="${currentDestination.id}" />
+	<td th:text="${currentDestination.destination}" />
+	<td th:text="${currentDestination.tripCost}" />
+	<td th:text="${currentDestination.tripStart}" />
+	<td th:text="${currentDestination.tripEnd}" />
+	<td><a th:href="@{/edit/{id}(id=${currentDestination.id})}">Edit</a></td>
+	<td><a th:href="@{/delete/{id}(id=${currentDestination.id})}">Delete</a></td>
+</tr>
+</table>
+</form>
+<a href="../inputDestination">Add a new destination to your itinerary</a>
+</body>
+</html>

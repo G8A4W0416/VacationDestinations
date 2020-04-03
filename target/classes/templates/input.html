@@ -1,0 +1,16 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert New Destination</title>
+</head>
+<body>
+<form th:object="${newDestination}" th:action="@{/update/{id}(id=${newDestination.id})}" method="post">
+Destination: <input size="20" th:field="*{destination}" /><br />
+Trip Cost: <input size="20" th:field="*{tripCost}" /><br />
+Trip Start Date: <input size="20" th:field="*{tripStart}" /><br />
+Trip End Date: <input size="20" th:field="*{tripEnd}" /><br />
+<input type="submit" name="submit" value="submit" />
+</form>
+<a href="../viewAll">View all Vacation Destinations</a>
+</body>
+</html>
