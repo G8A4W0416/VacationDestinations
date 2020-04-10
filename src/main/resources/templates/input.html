@@ -1,16 +1,75 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
-<title>Insert New Destination</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../css/vacationDestinations.css" />
+<title>Insert/Edit Destination</title>
 </head>
 <body>
 <form th:object="${newDestination}" th:action="@{/update/{id}(id=${newDestination.id})}" method="post">
-Destination: <input size="20" th:field="*{destination}" /><br />
-Trip Cost: <input size="20" th:field="*{tripCost}" /><br />
-Trip Start Date: <input size="20" th:field="*{tripStart}" /><br />
-Trip End Date: <input size="20" th:field="*{tripEnd}" /><br />
-<input type="submit" name="submit" value="submit" />
+<fieldset>
+	<legend>Insert/Edit Destination</legend>
+	<div class="fieldGridWrapper">
+		<div class="fieldRow">
+			<label for="destination">Destination:</label> 
+			<input size="20" th:field="*{destination}" />
+		</div>
+		<div class="fieldRow">
+			<label for="tripCost">Trip Cost:</label> 
+			<input size="20" th:field="*{tripCost}" />
+		</div>
+		<div class="fieldRow">
+			<label for="tripStart">Trip Start Date:</label> 
+			<input size="20" th:field="*{tripStart}" placeholder="YYYY-MM-DD" />
+		</div>
+		<div class="fieldRow">
+			<label for="tripEnd">Trip End Date:</label> 
+			<input size="20" th:field="*{tripEnd}" placeholder="YYYY-MM-DD" />
+		</div>
+	</div>
+</fieldset>
+	
+<input class="btn" type="submit" value="Submit" />
 </form>
-<a href="../viewAll">View all Vacation Destinations</a>
+
+<a class="btn" href="../viewAll">View all Vacation Destinations</a>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+<script>
+$(function() {
+	$("form").validate({
+	  rules: {
+	    destination: {required: true},
+	    tripCost: {
+	    	required: true,
+	    	number: true
+	    },
+	    tripStart: {
+	    	required: true,
+	    	dateISO: true
+	    },
+	    tripEnd: {
+	    	required: true,
+	    	dateISO: true
+	    }
+	  },
+	  messages: {
+		destination: {required: "Please enter trip destination."},
+		tripCost: {
+			required: "Please enter cost of trip.",
+			number: "Please enter a number."
+		},
+	    tripStart: {
+	    	required: "Please enter the trip start date.",
+	    	dateISO: "Please enter date in the format of YYYY-MM-DD."
+	    },
+	    tripEnd: {
+	    	required: "Please enter the trip end date.",
+	    	dateISO: "Please enter date in the format of YYYY-MM-DD."
+	    }
+	  }
+	});
+});
+</script>
 </body>
 </html>

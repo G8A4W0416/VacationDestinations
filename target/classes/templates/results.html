@@ -1,22 +1,34 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../css/vacationDestinations.css" />
+<style>
+.fieldRow {
+	display: grid;
+	grid-template-columns: 6% 20% 10% 15% 15% 12% auto;
+	grid-gap: 10px;
+}
+</style>
 <title>View All Destinations</title>
 </head>
 <body>
 <form>
-<table>
-<tr th:each="currentDestination : ${destinations}">
-	<td th:text="${currentDestination.id}" />
-	<td th:text="${currentDestination.destination}" />
-	<td th:text="${currentDestination.tripCost}" />
-	<td th:text="${currentDestination.tripStart}" />
-	<td th:text="${currentDestination.tripEnd}" />
-	<td><a th:href="@{/edit/{id}(id=${currentDestination.id})}">Edit</a></td>
-	<td><a th:href="@{/delete/{id}(id=${currentDestination.id})}">Delete</a></td>
-</tr>
-</table>
+<fieldset>
+	<legend>View All Destinations</legend>
+	<div class="fieldGridWrapper">
+		<div class="fieldRow" th:each="currentDestination : ${destinations}">
+			<span th:text="${currentDestination.id}"></span>
+			<span th:text="${currentDestination.destination}"></span>
+			<span th:text="${currentDestination.tripCost}"></span>
+			<span th:text="${currentDestination.tripStart}"></span>
+			<span th:text="${currentDestination.tripEnd}"></span>
+			<a class="btn" th:href="@{/edit/{id}(id=${currentDestination.id})}">Edit</a>
+			<a class="btn" th:href="@{/delete/{id}(id=${currentDestination.id})}">Delete</a>
+		</div>
+	</div>
+</fieldset>
 </form>
-<a href="../inputDestination">Add a new destination to your itinerary</a>
+<a class="btn" href="../inputDestination">Add a new destination to your itinerary</a>
 </body>
 </html>
